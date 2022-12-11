@@ -7,7 +7,7 @@ numRX = 4; % number of receivers
 
 %%
 for i = 1:5
- files{i} = fullfile(sprintf('stepping_person1_%d.bin', i));
+ files{i} = fullfile(sprintf('sit_person1_%d.bin', i));
 end
 
 for u = 1:5
@@ -44,7 +44,7 @@ Y_ch1 = fft(retVal_ch1_2D);
 
 %%
 
-Y_summed_cut  = Y_summed(25:100,5000:18000);
+Y_summed_cut  = Y_summed(25:100,7000:20000);
 Y_summed_cut_sum = sum(Y_summed_cut);
 
 MD_window = 256;
@@ -55,11 +55,12 @@ h = [1 -2 1];
 Micro_Dop_data_filtered = filter(h,1,Micro_Dop_data,[],2);
 
 
-save(['E:\3rdYearProject\radardata\stepping_person1_',num2str(u),'.mat'],'Micro_Dop_data_filtered');
+save(['E:\3rdYearProject\radardata\sit_person1_',num2str(u),'.mat'],'Micro_Dop_data_filtered');
 
 
  figure
  imagesc(10*log10(abs(Micro_Dop_data_filtered)),([50 60]));
+ xlabel('time/ 32.5ms');
  title('Doppler time');
 
 
@@ -69,11 +70,11 @@ save(['E:\3rdYearProject\radardata\stepping_person1_',num2str(u),'.mat'],'Micro_
 
 end
 %%
-saveas(1,'E:\3rdYearProject\radardata\stepping_person1_1.png');
-saveas(2,'E:\3rdYearProject\radardata\stepping_person1_2.png');
-saveas(3,'E:\3rdYearProject\radardata\stepping_person1_3.png');
-saveas(4,'E:\3rdYearProject\radardata\stepping_person1_4.png');
-saveas(5,'E:\3rdYearProject\radardata\stepping_person1_5.png');
+saveas(1,'E:\3rdYearProject\radardata\sit_person1_1.png');
+saveas(2,'E:\3rdYearProject\radardata\sit_person1_2.png');
+saveas(3,'E:\3rdYearProject\radardata\sit_person1_3.png');
+saveas(4,'E:\3rdYearProject\radardata\sit_person1_4.png');
+saveas(5,'E:\3rdYearProject\radardata\sit_person1_5.png');
 
 
 

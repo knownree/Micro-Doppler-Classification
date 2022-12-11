@@ -1,10 +1,11 @@
-I = imread('walkingaway_person1_1.png');
+for oo = 1:5
+I = imread(['walkingaway_person1_',num2str(oo),'.png']);
 Ired = double(I(:,:,1));
 Igreen = double(I(:,:,2));
 Iblue = double(I(:,:,3)); %show color image%
 Igrey = (Ired+Igreen+Iblue)/3;% find the grey scale%
 Igrey = uint8(Igrey);
-figure,imshow(Igrey);
+%figure,imshow(Igrey);
 
 %%
 I = double(Igrey);% double the size%
@@ -22,46 +23,48 @@ for i = 41:m-59
 end
 
 Ithreshold = uint8(Ithreshold);% change to 8-bit
-figure,imshow(Ithreshold)
-title('threshold');
+Ithreshold = Ithreshold(30:515,30:674);
+%figure,imshow(Ithreshold)
+%title('threshold');
 
 
 
 %%
-Ithreshold = double(Ithreshold);
-Ifiltered = zeros(m-105,n-165);
-for i = 4:m-102
-    for j = 4:n-162
-        cc = mean([Ithreshold(i-3,j-3),Ithreshold(i-3,j-2),Ithreshold(i-3,j-1),Ithreshold(i-3,j),Ithreshold(i-3,j+1),Ithreshold(i-3,j+2),Ithreshold(i-3,j+3), Ithreshold(i-2,j-3),Ithreshold(i-2,j-2),Ithreshold(i-2,j-1),Ithreshold(i-2,j),Ithreshold(i-2,j+1),Ithreshold(i-2,j+2),Ithreshold(i-2,j+3),Ithreshold(i-1,j-3),Ithreshold(i-1,j-2),Ithreshold(i-1,j-1),Ithreshold(i-1,j),Ithreshold(i-1,j+1),Ithreshold(i-1,j+2),Ithreshold(i-1,j+3),Ithreshold(i,j-3),Ithreshold(i,j-2),Ithreshold(i,j-1),Ithreshold(i,j),Ithreshold(i,j+1),Ithreshold(i,j+2),Ithreshold(i,j+3)...
-            ,Ithreshold(i+1,j-3),Ithreshold(i+1,j-2),Ithreshold(i+1,j-1),Ithreshold(i+1,j),Ithreshold(i+1,j+1),Ithreshold(i+1,j+2),Ithreshold(i+1,j+3),Ithreshold(i+2,j-3),Ithreshold(i+2,j-2),Ithreshold(i+2,j-1),Ithreshold(i+2,j),Ithreshold(i+2,j+1),Ithreshold(i+2,j+2),Ithreshold(i+2,j+3),Ithreshold(i+3,j-3),Ithreshold(i+3,j-2),Ithreshold(i+3,j-1),Ithreshold(i+3,j),Ithreshold(i+3,j+1),Ithreshold(i+3,j+2),Ithreshold(i+3,j+3)]);
-        if cc <= 130
-            Ifiltered(i-3,j-3) = 0;
-        else
-            Ifiltered(i-3,j-3) = 255;
-        end
-    end
-end
-figure, imshow(Ifiltered);
-title('Filtered');
+%Ithreshold = double(Ithreshold);
+%Ifiltered = zeros(m-105,n-165);
+%for i = 4:m-102
+%    for j = 4:n-162
+%        cc = mean([Ithreshold(i-3,j-3),Ithreshold(i-3,j-2),Ithreshold(i-3,j-1),Ithreshold(i-3,j),Ithreshold(i-3,j+1),Ithreshold(i-3,j+2),Ithreshold(i-3,j+3), Ithreshold(i-2,j-3),Ithreshold(i-2,j-2),Ithreshold(i-2,j-1),Ithreshold(i-2,j),Ithreshold(i-2,j+1),Ithreshold(i-2,j+2),Ithreshold(i-2,j+3),Ithreshold(i-1,j-3),Ithreshold(i-1,j-2),Ithreshold(i-1,j-1),Ithreshold(i-1,j),Ithreshold(i-1,j+1),Ithreshold(i-1,j+2),Ithreshold(i-1,j+3),Ithreshold(i,j-3),Ithreshold(i,j-2),Ithreshold(i,j-1),Ithreshold(i,j),Ithreshold(i,j+1),Ithreshold(i,j+2),Ithreshold(i,j+3)...
+%            ,Ithreshold(i+1,j-3),Ithreshold(i+1,j-2),Ithreshold(i+1,j-1),Ithreshold(i+1,j),Ithreshold(i+1,j+1),Ithreshold(i+1,j+2),Ithreshold(i+1,j+3),Ithreshold(i+2,j-3),Ithreshold(i+2,j-2),Ithreshold(i+2,j-1),Ithreshold(i+2,j),Ithreshold(i+2,j+1),Ithreshold(i+2,j+2),Ithreshold(i+2,j+3),Ithreshold(i+3,j-3),Ithreshold(i+3,j-2),Ithreshold(i+3,j-1),Ithreshold(i+3,j),Ithreshold(i+3,j+1),Ithreshold(i+3,j+2),Ithreshold(i+3,j+3)]);
+%        if cc <= 130
+%            Ifiltered(i-3,j-3) = 0;
+%        else
+%            Ifiltered(i-3,j-3) = 255;
+%        end
+%    end
+%end
+%Ifiltered = Ifiltered(30:515,30:674);
+%figure, imshow(Ifiltered);
+%title('Filtered');
 %%
-Ifiltered1 = zeros(m-109,n-169);
-for i = 3:m-107
-    for j = 3:n-167
-        cc = mean([Ifiltered(i+2,j+2),Ifiltered(i+2,j+1),Ifiltered(i+2,j),Ifiltered(i+2,j-2),Ifiltered(i+2,j-1)...
-            ,Ifiltered(i+1,j+2),Ifiltered(i+1,j+1),Ifiltered(i+1,j),Ifiltered(i+1,j-2),Ifiltered(i+1,j-1),Ifiltered(i,j+2),Ifiltered(i,j+1),Ifiltered(i,j)...
-            Ifiltered(i,j-1),Ifiltered(i,j-2),Ifiltered(i-1,j+2),Ifiltered(i-1,j+1),Ifiltered(i-1,j),Ifiltered(i-1,j-1),Ifiltered(i-1,j-2),Ifiltered(i-2,j+2)...
-            ,Ifiltered(i-2,j+1),Ifiltered(i-2,j),Ifiltered(i-2,j-1),Ifiltered(i-2,j-2)]);
-    if cc < 130
-        Ifiltered1(i-2,j-2) = 0;
-    else
-        Ifiltered1(i-2,j-2) = 255;
-    end
-    end
-end
-Ifiltered1 = Ifiltered1(30:515,30:674);
+%Ifiltered1 = zeros(m-109,n-169);
+%for i = 3:m-107
+%    for j = 3:n-167
+%        cc = mean([Ifiltered(i+2,j+2),Ifiltered(i+2,j+1),Ifiltered(i+2,j),Ifiltered(i+2,j-2),Ifiltered(i+2,j-1)...
+%            ,Ifiltered(i+1,j+2),Ifiltered(i+1,j+1),Ifiltered(i+1,j),Ifiltered(i+1,j-2),Ifiltered(i+1,j-1),Ifiltered(i,j+2),Ifiltered(i,j+1),Ifiltered(i,j)...
+%            Ifiltered(i,j-1),Ifiltered(i,j-2),Ifiltered(i-1,j+2),Ifiltered(i-1,j+1),Ifiltered(i-1,j),Ifiltered(i-1,j-1),Ifiltered(i-1,j-2),Ifiltered(i-2,j+2)...
+%            ,Ifiltered(i-2,j+1),Ifiltered(i-2,j),Ifiltered(i-2,j-1),Ifiltered(i-2,j-2)]);
+%    if cc < 130
+%        Ifiltered1(i-2,j-2) = 0;
+%    else
+%        Ifiltered1(i-2,j-2) = 255;
+%    end
+%    end
+%end
+%Ifiltered1 = Ifiltered1(30:515,30:674);
 
-figure,imshow(Ifiltered1)
-title('filtered1');
+%figure,imshow(Ifiltered1)
+%title('filtered1');
 
 
 %%
@@ -84,16 +87,16 @@ title('filtered1');
 %title('filtered2');
 
 %%
-mid = zeros(1,length(Ifiltered1));
-peak = zeros(1,length(Ifiltered1));
-bot = zeros(1,length(Ifiltered1));
-for j = 1:length(Ifiltered1)
+mid = zeros(1,length(Ithreshold));
+peak = zeros(1,length(Ithreshold));
+bot = zeros(1,length(Ithreshold));
+for j = 1:length(Ithreshold)
     count = 0;
     pos = 0;
     bo = 0;
-    pe = length(Ifiltered1);
-    for i = 1:length(Ifiltered1(:,1))
-        if Ifiltered1(i,j) ==255
+    pe = length(Ithreshold);
+    for i = 1:length(Ithreshold(:,1))
+        if Ithreshold(i,j) ==255
             count = count+1;
             pos = pos + i;
             if i < pe
@@ -112,7 +115,8 @@ end
 
     
 %%
-save('walkingaway_person1_5.mat','peak','mid','bot');
+save(['walkingaway_person1_data_',num2str(oo),'.mat'],'peak','mid','bot');
+end
     
             
     
